@@ -18,17 +18,20 @@ const {
  *
  */
 function renameFiles(names) {
-  let count = 0;
-  for (let i = 1; i < names.length; i++) {
-    if (names[i].includes(names[0]) ) {
-      count++;
-      names[i] += `${(count)}`;
+  let count = 1;
+
+  for (let i = 0; i < names.length; i++) {
+
+    for (let j = i + 1; j < names.length; j++) {
+      if (names[i].includes(names[j])) {
+        names[j] = `${names[j]}(${count})`;
+        count++;
+      }
     }
+
   }
   return names;
 }
-
-module.exports = {
-  renameFiles
-};
-
+  module.exports = {
+    renameFiles
+  };
